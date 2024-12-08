@@ -1,6 +1,6 @@
-import { db } from "../db.js";
+const db = require("../db.js");
 
-export const getUsers = (_, res) => {
+exports.getUsers = (_, res) => {
     const q = "SELECT * FROM usuarios";
 
     db.query(q, (err, data) => {
@@ -10,7 +10,7 @@ export const getUsers = (_, res) => {
     });
 };
 
-export const addUser = (req, res) => {
+exports.addUser = (req, res) => {
     const q =
         "INSERT INTO usuarios(`nome`, `email`, `fone`, `data_nascimento`) VALUES(?)";
 
@@ -28,7 +28,7 @@ export const addUser = (req, res) => {
     });
 };
 
-export const updateUser = (req, res) => {
+exports.updateUser = (req, res) => {
     const q =
         "UPDATE usuarios SET `nome` = ?, `email` = ?, `fone` = ?, `data_nascimento` = ? WHERE `id` = ?";
 
@@ -46,7 +46,7 @@ export const updateUser = (req, res) => {
     });
 };
 
-export const deleteUser = (req, res) => {
+exports.deleteUser = (req, res) => {
     const q = "DELETE FROM usuarios WHERE `id` = ?";
 
     db.query(q, [req.params.id], (err) => {

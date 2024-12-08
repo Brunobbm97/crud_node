@@ -1,10 +1,18 @@
-/**
- * import mysql from "mysql"
+const mysql = require("mysql");
 
-export const db = mysql.createConnection({
+const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "admin123",
-    database: "crud"
-})
- */
+    database: "crud_node"
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error("Erro ao conectar ao banco de dados:", err);
+        return;
+    }
+    console.log("Conexão bem-sucedida com o banco de dados.");
+});
+
+module.exports = db; // Exportação usando CommonJS
